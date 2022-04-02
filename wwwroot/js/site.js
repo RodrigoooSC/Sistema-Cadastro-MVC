@@ -5,37 +5,25 @@
 
 
 // Efeito de máquina de escrever
-function typeWriter(texto){   
-    const textoArray = texto.innerText.split('');   
-    
+function efeitoMaquinaEscrever(texto){       
+    const textoArray = texto.innerText.split('');
+            
     texto.innerHTML = '';
-
+    
     textoArray.forEach((letra, i ) => {
         setTimeout(() => 
-            texto.innerHTML += letra, 85 * i)        
-    });       
-}
-
-function efeitoMaquinaEscrever(titulo, texto, callback){
-    typeWriter(titulo);
-    callback(typeWriter(texto));   
+            texto.innerHTML += letra, 50 * i)            
+    });    
 }
 
 const titulo = document.querySelector('.titulo-home');
 const texto = document.querySelector('.texto-home');
 
-// document.querySelector('.titulo-home').innerHTML = '';
-document.querySelector('.texto-home').innerHTML = '';
+//efeitoMaquinaEscrever(titulo);
+efeitoMaquinaEscrever(texto);
 
-efeitoMaquinaEscrever(titulo,texto);
-
-
-
-
-
-
-
-
+//document.querySelector('.titulo-home').innerHTML = '';
+//document.querySelector('.texto-home').innerHTML = '';
 
 
 
