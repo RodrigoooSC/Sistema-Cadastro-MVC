@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace Cadastro_MVC.Models
 {
@@ -16,20 +16,20 @@ namespace Cadastro_MVC.Models
         public int PessoaID { get; set; }
         [DisplayName("Nome")]
         public string PessoaNome { get; set; }
-        [DisplayName("Email")]
+        [DisplayName("Email")]        
         public string PessoaEmail { get; set; }
         [DisplayName("Telefone")]
         public string PessoaTelefone { get; set; }
 
         // Criar uma CONSTANTE para conexão com o banco de dados
-        readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=cadastro_mvc;Trusted_Connection=True";          
+                readonly string connectionString = @"Data Source=DESKTOP-68SK05H\SQLEXPRESS;Initial Catalog=cadastro_mvc;Integrated Security=True";         
 
         // Este método salva os dados que vieram do formulário no banco de dados.          
         public void Salvar()
         {
             // Cria uma conexão com o banco de dados
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
-            {            
+            {                 
                 // Realiza a abertura de uma conexão com o banco de dados
                 sqlCon.Open();
 
@@ -41,7 +41,8 @@ namespace Cadastro_MVC.Models
                 sqlCmd.Parameters.AddWithValue("@PessoaTelefone", PessoaTelefone);
 
                 //Executar o comando no SQL (Tecla F5 do SQL Server)
-                sqlCmd.ExecuteNonQuery();
+                sqlCmd.ExecuteNonQuery();                        
+                
             }
         }
     }

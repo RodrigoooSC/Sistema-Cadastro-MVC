@@ -17,37 +17,37 @@ namespace Cadastro_MVC.Controllers
         {
             return View();
         }
- 
+
         // GET: Pessoa/Details/id
         public ActionResult Details(int id)
         {
             return View();
         }
- 
+
         // GET: Pessoa/Create
         [HttpGet]
         public ActionResult Create()
         {
             //A View agora está relacionada com o Modelo
             return View(new PessoaModel());
-           
+
         }
- 
+
         // POST: Pessoa/Create
         [HttpPost]
         public ActionResult Create(PessoaModel pModel)
-        {
-            pModel.Salvar();
- 
-            return RedirectToAction("Index");
+        {            
+                pModel.Salvar();
+
+                return RedirectToAction("Index");            
         }
- 
+
         // GET: Pessoa/Edit/id
         public ActionResult Edit(int id)
         {
             return View();
         }
- 
+
         // POST: Pessoa/Edit/id
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -56,7 +56,7 @@ namespace Cadastro_MVC.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -64,13 +64,13 @@ namespace Cadastro_MVC.Controllers
                 return View();
             }
         }
- 
+
         // GET: Pessoa/Delete/id
         public ActionResult Delete(int id)
         {
             return View();
         }
- 
+
         // POST: Pessoa/Delete/id
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -79,16 +79,13 @@ namespace Cadastro_MVC.Controllers
             try
             {
                 // TODO: Add delete logic here
- 
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 return View();
             }
-        } 
-
-          
-
+        }
     }
 }

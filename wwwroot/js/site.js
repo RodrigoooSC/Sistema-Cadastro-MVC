@@ -25,5 +25,3 @@ efeitoMaquinaEscrever(texto);
 //document.querySelector('.titulo-home').innerHTML = '';
 //document.querySelector('.texto-home').innerHTML = '';
 
-
-
