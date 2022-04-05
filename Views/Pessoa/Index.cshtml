@@ -1,11 +1,43 @@
+@model System.Data.DataTable;
 @{
     ViewData["Title"] = "Pessoa";
 }
-<h1>Cadastro de Pessoas</h1>
+<h2>Lista de registros 🗃</h2>
 
+<!-- Criando uma tabela para mostrar os dados de forma organizada -->
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone</th>
+    </tr>
+  </thead>
+  <tbody>
+   @for(int i = 0; i < Model.Rows.Count; i ++)
+  {      
+    <tr>
+      <th scope="row">@Model.Rows[i][0]</th>
+      <td>@Model.Rows[i][1]</td>
+      <td>@Model.Rows[i][2]</td>
+      <td>@Model.Rows[i][3]</td>
+    </tr>
+    
+  }    
+  </tbody> 
+</table>
 <br>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+<div class="btn-group mr-2" role="group" aria-label="First group">
+    <a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Novo cadastro</a>
+</div>
+<div class="btn-group mr-2" role="group" aria-label="First group">
+    @* <a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Alterar</a> *@
+</div>
+</div>
 
-<a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Cadastrar Pessoa 🤝🏽</a>
 
 
 

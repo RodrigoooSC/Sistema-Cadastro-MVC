@@ -13,9 +13,15 @@ namespace Cadastro_MVC.Controllers
     public class PessoaController : Controller
     {
         // GET: Pessoa
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            // Criar uma referência para o PessoaModel
+            PessoaModel pModel = new PessoaModel();
+
+            // Executar o método Listar()           
+
+            return View(pModel.Listar());
         }
 
         // GET: Pessoa/Details/id

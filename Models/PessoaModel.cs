@@ -49,25 +49,26 @@ namespace Cadastro_MVC.Models
         public DataTable Listar() // Método do PessoaModel
         {
             // Criar uma variável para receber os dados da tabela no banco de dados (referência)
-            DataTable tblPessoa = new DataTable();
- 
-            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            using (DataTable tblPessoa = new DataTable())
             {
-                //Abrir a conexão com o banco de dados
-                sqlCon.Open();
- 
-                //Cria uma instrução SQL para ser executada no servidor SQL Server
-                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM tb_pessoa", sqlCon);
- 
-                //string sql = "SELECT * FROM tb_pessoa";
-                //SqlDataAdapter sqlDa = new SqlDataAdapter(sql, sqlCon);
- 
-                //Recuperação dos dados após a execução da instrução
-                sqlDa.Fill(tblPessoa);
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    //Abrir a conexão com o banco de dados
+                    sqlCon.Open();
+
+                    //Cria uma instrução SQL para ser executada no servidor SQL Server
+                    SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM tb_pessoa", sqlCon);
+
+                    //string sql = "SELECT * FROM tb_pessoa";
+                    //SqlDataAdapter sqlDa = new SqlDataAdapter(sql, sqlCon);
+
+                    //Recuperação dos dados após a execução da instrução
+                    sqlDa.Fill(tblPessoa);
+                }
+
+                // Retornar os obtidos para serem mostrados na View (Index)
+                return tblPessoa;
             }
- 
-            // Retornar os obtidos para serem mostrados na View (Index)
-            return tblPessoa;
         }
     }
 }
