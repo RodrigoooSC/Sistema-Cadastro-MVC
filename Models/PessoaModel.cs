@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,7 +45,8 @@ namespace Cadastro_MVC.Models
             }
         }
 
-        public DataTable Listar() // Método do PessoaModel
+        // Método que retorna dentro de um DataTable todos os dados do BD.
+        public DataTable Listar() 
         {
             // Criar uma variável para receber os dados da tabela no banco de dados (referência)
             using (DataTable tblPessoa = new DataTable())
@@ -95,6 +95,36 @@ namespace Cadastro_MVC.Models
             PessoaNome = tblPessoa.Rows[0][1].ToString();
             PessoaEmail = tblPessoa.Rows[0][2].ToString();
             PessoaTelefone = tblPessoa.Rows[0][3].ToString();
+        }
+
+        // Método atualizar o registro desejado no banco dados
+        public void Atualizar()
+        {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString)){
+ 
+                sqlCon.Open();
+ 
+                //Criação da instrução SQL para ser executada no banco de dados
+                //A cláusula WHERE vai garantir que somente o registro escolhido seja atualizado
+                SqlCommand sqlCmd = new SqlCommand(
+                    "UPDATE tb_pessoa SET " +
+                    "PessoaNome = @PessoaNome, " + 
+                    "PessoaEmail = @PessoaEmail, " +
+                    "PessoaTelefone = @PessoaTelefone " +
+                    "WHERE PessoaID = @PessoaID", sqlCon // Condição para a atualização do registro
+                    );
+                /**
+                Na atualização de um registro (salvamento) se não for informado O QUE DEVE ser
+                atualizado, todos os registros serão atualizados com os mesmos dados
+                */
+                sqlCmd.Parameters.AddWithValue("@PessoaID", PessoaID); //Somente para o WHERE 
+                sqlCmd.Parameters.AddWithValue("@PessoNome", PessoaNome);
+                sqlCmd.Parameters.AddWithValue("@PessoaEmail", PessoaEmail);
+                sqlCmd.Parameters.AddWithValue("@PessoaTelefone", PessoaTelefone);
+ 
+                //Executar o comando UPDATE no banco de dados
+                sqlCmd.ExecuteNonQuery();
+            }
         }
     }
 }
