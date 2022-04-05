@@ -1,34 +1,40 @@
 @model System.Data.DataTable;
 @{
     ViewData["Title"] = "Pessoa";
+    
 }
-<h2>Lista de registros 🗃</h2>
-
+<h2>Lista de registros</h2>
 <!-- Criando uma tabela para mostrar os dados de forma organizada -->
-
-<table class="table table-bordered table-striped table-hover">
+<table id="myTable" class="table table-bordered table-striped table-hover">
   <thead>
-    <tr>
+    <tr class="text-center">
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
       <th scope="col">Email</th>
       <th scope="col">Telefone</th>
+      <th scope="col">Opções</th>
     </tr>
   </thead>
   <tbody>
    @for(int i = 0; i < Model.Rows.Count; i ++)
   {      
-    <tr>
+    <tr class="text-center">
       <th scope="row">@Model.Rows[i][0]</th>
       <td>@Model.Rows[i][1]</td>
       <td>@Model.Rows[i][2]</td>
       <td>@Model.Rows[i][3]</td>
-    </tr>
-    
+      <td class="text-center">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-primary btn-sm" tooltip="Editar">Editar         
+          </button>
+          @* <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir">Excluir            
+          </button> *@
+          </div>
+        </td>
+    </tr>    
   }    
   </tbody> 
 </table>
-<br>
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 <div class="btn-group mr-2" role="group" aria-label="First group">
     <a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Novo cadastro</a>
@@ -38,6 +44,15 @@
 </div>
 </div>
 
-
-
-
+@* Data Tables - Paginação de tabelas (https://datatables.net/) *@
+@section Scripts {
+  <script>
+    $(document).ready( function () {
+      $('#myTable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"
+        }
+      });
+  } );
+</script>
+}

@@ -19,7 +19,7 @@ namespace Cadastro_MVC.Controllers
             // Criar uma referência para o PessoaModel
             PessoaModel pModel = new PessoaModel();
 
-            // Executar o método Listar()           
+            // Executar o método Listar()                    
 
             return View(pModel.Listar());
         }
