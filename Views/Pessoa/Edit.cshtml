@@ -5,36 +5,35 @@
 }
 
 <h3>@ViewData["Title"]</h3>
-<hr />
 <div class="row">
     <div class="col-md-6">
+        <hr />
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group row">
-                <label asp-for="PessoaID" class="col-sm-4 col-form-label"></label>
+                <label asp-for="PessoaID" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <input asp-for="PessoaID" type="number" class="form-control" readonly>
-                    <span asp-validation-for="PessoaID" class="text-danger"></span>
+                    <input asp-for="PessoaID" type="number" class="form-control" readonly>                    
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="PessoaNome" class="col-sm-4 col-form-label"></label>
+                <label asp-for="PessoaNome" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <input asp-for="PessoaNome" type="text" class="form-control">
+                    <input asp-for="PessoaNome" type="text" class="form-control" placeholder="Digite seu nome">
                     <span asp-validation-for="PessoaNome" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="PessoaEmail" class="col-sm-4 col-form-label"></label>
+                <label asp-for="PessoaEmail" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <input asp-for="PessoaEmail" type="email" class="form-control">
+                    <input asp-for="PessoaEmail" type="email" class="form-control" placeholder="Digite seu e-mail">
                     <span asp-validation-for="PessoaEmail" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="PessoaTelefone" class="col-sm-4 col-form-label"></label>
+                <label asp-for="PessoaTelefone" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <input asp-for="PessoaTelefone" type="text" class="form-control">
+                    <input asp-for="PessoaTelefone" type="text" class="form-control" placeholder="Digite seu telefone">
                     <span asp-validation-for="PessoaTelefone" class="text-danger"></span>
                 </div>
             </div>
@@ -48,5 +47,5 @@
 </div>
 
 <div>
-    <a asp-action="Index">Voltar</a>
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">Voltar</a>
 </div>

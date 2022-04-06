@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cadastro_MVC.Models
 {
@@ -13,11 +11,19 @@ namespace Cadastro_MVC.Models
         // Campos (banco de dados) ou atributos desta classe
         [DisplayName("ID")] // É semelhante a uma etiqueta ou Label/Tag (APELIDO)
         public int PessoaID { get; set; }
+
         [DisplayName("Nome")]
+        [Required(ErrorMessage ="O preenchimento do nome é obrigatório")] // Campo requerido
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "O Tamanho do nome deve ter de 3 a 50 caracteres")] // Tamanho max-min do campo
         public string PessoaNome { get; set; }
-        [DisplayName("Email")]        
+
+        [DisplayName("E-mail")]
+        [Required(ErrorMessage ="O preenchimento do e-mail é obrigatório")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage ="Informe um e-mail válido.")] // Expressões regulares        
         public string PessoaEmail { get; set; }
+
         [DisplayName("Telefone")]
+        [Required(ErrorMessage ="O preenchimento do telefone é obrigatório")]
         public string PessoaTelefone { get; set; }
 
         // Criar uma CONSTANTE para conexão com o banco de dados

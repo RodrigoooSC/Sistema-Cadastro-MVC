@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Cadastro_MVC.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 
 namespace Cadastro_MVC.Controllers
@@ -21,13 +16,7 @@ namespace Cadastro_MVC.Controllers
 
             // Executar o método Listar()              
             return View(pModel.Listar());
-        }
-
-        // GET: Pessoa/Details/id
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        }        
 
         // GET: Pessoa/Create
         [HttpGet]
@@ -38,11 +27,18 @@ namespace Cadastro_MVC.Controllers
         }
 
         // POST: Pessoa/Create
-        [HttpPost]
+        [HttpPost]        
         public ActionResult Create(PessoaModel pModel)
         {
-            pModel.Salvar();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid) // Testa se o Model (Anotação) é valida
+            {
+                pModel.Salvar();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(pModel);
+            }
         }
 
         // GET: Pessoa/Edit/id - Este método apenas recupera o registro e mostra no formulário para alteração dos dados
@@ -55,12 +51,18 @@ namespace Cadastro_MVC.Controllers
         }
 
         // POST: Pessoa/Edit/id - este método salva no BD os dados alterados
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Edit(PessoaModel pModel)
         {
+            if (ModelState.IsValid) // Testa se o Model (Anotação) é valida
+            {
             pModel.Atualizar();
             return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(pModel);
+            }
         }
 
         // GET: Pessoa/Delete/id - Método realiza a exclusão do registro, passando os dados para o Model PessoaModel
@@ -69,14 +71,6 @@ namespace Cadastro_MVC.Controllers
         {
             PessoaModel pModel = new PessoaModel();
             pModel.Excluir(id);
-            return RedirectToAction(nameof(Index));
-        }
-
-        // POST: Pessoa/Delete/id
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
             return RedirectToAction(nameof(Index));
         }
     }

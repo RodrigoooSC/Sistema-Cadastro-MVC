@@ -1,12 +1,14 @@
 @model System.Data.DataTable;
+
 @{
     ViewData["Title"] = "Lista de registros";
     
 }
+
 <h3>@ViewData["Title"]</h3>
-<hr />
 <!-- Criando uma tabela para mostrar os dados de forma organizada -->
 <div class="table-responsive">
+<hr />
 <table id="myTable" class="table table-bordered table-striped table-hover">
   <thead class="thead-dark">
     <tr class="text-center">
@@ -14,7 +16,7 @@
       <th scope="col">Nome</th>
       <th scope="col">Email</th>
       <th scope="col">Telefone</th>
-      <th scope="col">Opções</th>
+      <th scope="col">Editar/Excluir</th>
     </tr>
   </thead>
   <tbody>
@@ -25,11 +27,9 @@
       <td class="align-middle">@Model.Rows[i][1]</td>
       <td class="align-middle">@Model.Rows[i][2]</td>
       <td class="align-middle">@Model.Rows[i][3]</td>
-      <td class="align-middle">
-          @* <div class="btn-group mr-2" role="group" aria-label="First group"> *@
-              <a href="@Url.Action("Edit", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-info btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a href="@Url.Action("Delete", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-          @* </div> *@
+      <td class="align-middle">          
+          <a href="@Url.Action("Edit", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-info btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="@Url.Action("Delete", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>          
         </td>
     </tr>    
   }    
@@ -37,7 +37,7 @@
 </table>
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group mr-2" role="group" aria-label="First group">
-      <a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Novo cadastro</a>
+      <a href="@Url.Action("Create", "Pessoa")" class="btn btn-success">Novo cadastro</a>
   </div>
 </div>
 </div>
