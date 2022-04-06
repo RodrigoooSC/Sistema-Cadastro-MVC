@@ -1,12 +1,14 @@
 @model System.Data.DataTable;
 @{
-    ViewData["Title"] = "Pessoa";
+    ViewData["Title"] = "Lista de registros";
     
 }
-<h2>Lista de registros</h2>
+<h3>@ViewData["Title"]</h3>
+<hr />
 <!-- Criando uma tabela para mostrar os dados de forma organizada -->
+<div class="table-responsive">
 <table id="myTable" class="table table-bordered table-striped table-hover">
-  <thead>
+  <thead class="thead-dark">
     <tr class="text-center">
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
@@ -19,28 +21,24 @@
    @for(int i = 0; i < Model.Rows.Count; i ++)
   {      
     <tr class="text-center">
-      <th scope="row">@Model.Rows[i][0]</th>
-      <td>@Model.Rows[i][1]</td>
-      <td>@Model.Rows[i][2]</td>
-      <td>@Model.Rows[i][3]</td>
-      <td class="text-center">
-          <div class="btn-group mr-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-primary btn-sm" tooltip="Editar">Editar         
-          </button>
-          @* <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir">Excluir            
-          </button> *@
-          </div>
+      <th class="align-middle" scope="row">@Model.Rows[i][0]</th>
+      <td class="align-middle">@Model.Rows[i][1]</td>
+      <td class="align-middle">@Model.Rows[i][2]</td>
+      <td class="align-middle">@Model.Rows[i][3]</td>
+      <td class="align-middle">
+          @* <div class="btn-group mr-2" role="group" aria-label="First group"> *@
+              <a href="@Url.Action("Edit", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-info btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a href="@Url.Action("Delete", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+          @* </div> *@
         </td>
     </tr>    
   }    
   </tbody> 
 </table>
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-<div class="btn-group mr-2" role="group" aria-label="First group">
-    <a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Novo cadastro</a>
-</div>
-<div class="btn-group mr-2" role="group" aria-label="First group">
-    @* <a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Alterar</a> *@
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+      <a href="@Url.Action("Create", "Pessoa")" class="btn btn-secondary">Novo cadastro</a>
+  </div>
 </div>
 </div>
 

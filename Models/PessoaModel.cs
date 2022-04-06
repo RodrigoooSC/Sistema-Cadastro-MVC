@@ -118,7 +118,7 @@ namespace Cadastro_MVC.Models
                 atualizado, todos os registros serão atualizados com os mesmos dados
                 */
                 sqlCmd.Parameters.AddWithValue("@PessoaID", PessoaID); //Somente para o WHERE 
-                sqlCmd.Parameters.AddWithValue("@PessoNome", PessoaNome);
+                sqlCmd.Parameters.AddWithValue("@PessoaNome", PessoaNome);
                 sqlCmd.Parameters.AddWithValue("@PessoaEmail", PessoaEmail);
                 sqlCmd.Parameters.AddWithValue("@PessoaTelefone", PessoaTelefone);
  

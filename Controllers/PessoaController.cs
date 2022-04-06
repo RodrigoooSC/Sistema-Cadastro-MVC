@@ -12,15 +12,14 @@ namespace Cadastro_MVC.Controllers
 {
     public class PessoaController : Controller
     {
-        // GET: Pessoa
+        // GET: Pessoa - Este método tra a lista com todas as pessoas do BD
         [HttpGet]
         public ActionResult Index()
         {
             // Criar uma referência para o PessoaModel
             PessoaModel pModel = new PessoaModel();
 
-            // Executar o método Listar()                    
-
+            // Executar o método Listar()              
             return View(pModel.Listar());
         }
 
@@ -36,45 +35,38 @@ namespace Cadastro_MVC.Controllers
         {
             //A View agora está relacionada com o Modelo
             return View(new PessoaModel());
-
         }
 
         // POST: Pessoa/Create
         [HttpPost]
         public ActionResult Create(PessoaModel pModel)
-        {            
-                pModel.Salvar();
-
-                return RedirectToAction("Index");            
-        }
-
-        // GET: Pessoa/Edit/id
-        public ActionResult Edit(int id)
         {
-            return View();
+            pModel.Salvar();
+            return RedirectToAction("Index");
         }
 
-        // POST: Pessoa/Edit/id
+        // GET: Pessoa/Edit/id - Este método apenas recupera o registro e mostra no formulário para alteração dos dados
+        [HttpGet]
+        public ActionResult Edit(int id) // Este parâmetro é o ID da pessoa ou PessoaID
+        {
+            PessoaModel pModel = new PessoaModel();
+            pModel.Editar(id);
+            return View(pModel);
+        }
+
+        // POST: Pessoa/Edit/id - este método salva no BD os dados alterados
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(PessoaModel pModel)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            pModel.Atualizar();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Pessoa/Delete/id
         public ActionResult Delete(int id)
         {
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Pessoa/Delete/id
@@ -82,16 +74,7 @@ namespace Cadastro_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
