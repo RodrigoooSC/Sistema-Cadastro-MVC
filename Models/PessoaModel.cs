@@ -104,8 +104,8 @@ namespace Cadastro_MVC.Models
  
                 sqlCon.Open();
  
-                //Criação da instrução SQL para ser executada no banco de dados
-                //A cláusula WHERE vai garantir que somente o registro escolhido seja atualizado
+                // Criação da instrução SQL para ser executada no banco de dados
+                // A cláusula WHERE vai garantir que somente o registro escolhido seja atualizado
                 SqlCommand sqlCmd = new SqlCommand(
                     "UPDATE tb_pessoa SET " +
                     "PessoaNome = @PessoaNome, " + 
@@ -122,7 +122,22 @@ namespace Cadastro_MVC.Models
                 sqlCmd.Parameters.AddWithValue("@PessoaEmail", PessoaEmail);
                 sqlCmd.Parameters.AddWithValue("@PessoaTelefone", PessoaTelefone);
  
-                //Executar o comando UPDATE no banco de dados
+                // Executar o comando UPDATE no banco de dados
+                sqlCmd.ExecuteNonQuery();
+            }
+        }
+
+        // Remove da tabela o registro indicado em idPessoa
+        public void Excluir(int idPessoa)
+        {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString)){
+ 
+                sqlCon.Open();
+ 
+                // Cria a instrução SQL DELETE para remover o registro indicado com o ID
+                SqlCommand sqlCmd = new SqlCommand(
+                    "DELETE tb_pessoa WHERE PessoaID = @PessoaID", sqlCon);
+                sqlCmd.Parameters.AddWithValue("@PessoaID", idPessoa);
                 sqlCmd.ExecuteNonQuery();
             }
         }

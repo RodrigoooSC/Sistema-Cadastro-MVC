@@ -63,9 +63,12 @@ namespace Cadastro_MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Pessoa/Delete/id
+        // GET: Pessoa/Delete/id - Método realiza a exclusão do registro, passando os dados para o Model PessoaModel
+        [HttpGet]
         public ActionResult Delete(int id)
         {
+            PessoaModel pModel = new PessoaModel();
+            pModel.Excluir(id);
             return RedirectToAction(nameof(Index));
         }
 
