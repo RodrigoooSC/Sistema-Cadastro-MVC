@@ -1,8 +1,7 @@
 @model System.Data.DataTable;
 
 @{
-    ViewData["Title"] = "Lista de registros";
-    
+    ViewData["Title"] = "Lista de registros";    
 }
 
 <h3>@ViewData["Title"]</h3>
@@ -19,17 +18,41 @@
       <th scope="col">Editar/Excluir</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody>    
    @for(int i = 0; i < Model.Rows.Count; i ++)
   {      
     <tr class="text-center">
       <th class="align-middle" scope="row">@Model.Rows[i][0]</th>
-      <td class="align-middle">@Model.Rows[i][1]</td>
+      <td class="align-middle" >@Model.Rows[i][1]</td>
       <td class="align-middle">@Model.Rows[i][2]</td>
       <td class="align-middle">@Model.Rows[i][3]</td>
-      <td class="align-middle">          
-          <a href="@Url.Action("Edit", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-info btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="@Url.Action("Delete", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>          
+      <td class="align-middle"> 
+
+        <a href="@Url.Action("Edit", "Pessoa", new { @id=@Model.Rows[i][0]})" class="btn btn-info btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+
+        <!-- Button trigger modal -->
+        <a href="" class="btn btn-danger btn-sm" data-target="#modalDelete-@Model.Rows[i][0]" data-toggle="modal" data-path=@Url.Action("Delete", "Pessoa", new { @id=@Model.Rows[i][0]})><i class="fa-solid fa-trash-can"></i></a>
+        <!-- Modal -->
+        <div class="modal fade" id="modalDelete-@Model.Rows[i][0]" tabindex="-1" role="dialog"
+          aria-labelledby="modalDeleteLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalDeleteLabel">Excluir Pessoa</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Deseja excluir @Model.Rows[i][1]?
+                </div>
+                <div class="modal-footer">                  
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                  @Html.ActionLink("Sim", "Delete", "Pessoa", new { @id=@Model.Rows[i][0]}, new { @class = "btn btn-danger"})
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
     </tr>    
   }    
@@ -37,11 +60,11 @@
 </table>
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group mr-2" role="group" aria-label="First group">
-      <a href="@Url.Action("Create", "Pessoa")" class="btn btn-success">Novo cadastro</a>
+    @Html.ActionLink("Novo Cadastro", "Create", "Pessoa", null ,new { @class = "btn btn-success"})      
   </div>
 </div>
 </div>
-
+ 
 @* Data Tables - Paginação de tabelas (https://datatables.net/) *@
 @section Scripts {
   <script>
@@ -52,5 +75,5 @@
         }
       });
   } );
-</script>
+  </script>
 }

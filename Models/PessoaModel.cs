@@ -24,10 +24,11 @@ namespace Cadastro_MVC.Models
 
         [DisplayName("Telefone")]
         [Required(ErrorMessage ="O preenchimento do telefone é obrigatório")]
+        [StringLength(10)]
         public string PessoaTelefone { get; set; }
 
         // Criar uma CONSTANTE para conexão com o banco de dados
-                readonly string connectionString = @"Data Source=DESKTOP-68SK05H\SQLEXPRESS;Initial Catalog=cadastro_mvc;Integrated Security=True";         
+                readonly string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=cadastro_mvc;Integrated Security=True";         
 
         // Este método salva os dados que vieram do formulário no banco de dados.          
         public void Salvar()
