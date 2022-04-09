@@ -5,18 +5,22 @@
 
 
 // Efeito de máquina de escrever
-function efeitoMaquinaEscrever(texto){       
+function efeitoMaquinaEscrever(texto){  
     const textoArray = texto.innerText.split('');
-            
     texto.innerHTML = '';
     
     textoArray.forEach((letra, i ) => {
         setTimeout(() => 
-            texto.innerHTML += letra, 50 * i)            
-    });    
+            texto.innerHTML += letra, 50 * i)                        
+    });        
 }
-
-const titulo = document.querySelector('.titulo-home');
 const texto = document.querySelector('.texto-home');
 
 efeitoMaquinaEscrever(texto);
+
+
+
+
+
+
+

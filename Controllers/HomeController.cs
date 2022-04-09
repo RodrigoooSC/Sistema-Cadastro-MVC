@@ -19,8 +19,12 @@ namespace Cadastro_MVC.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
+            ViewData["Message"] = "Projeto desenvolvido na faculdade.";            
+            ViewData["Professor"] = "Edson Melo de Souza";
+            ViewData["Developer"] = "Rodrigo Siva";
+
             return View();
         }
 
