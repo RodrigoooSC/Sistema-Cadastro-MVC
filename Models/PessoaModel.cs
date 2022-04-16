@@ -24,7 +24,7 @@ namespace Cadastro_MVC.Models
 
         [DisplayName("Telefone")]
         [Required(ErrorMessage ="O preenchimento do telefone é obrigatório")]
-        [StringLength(10)]
+        [StringLength(11)]
         public string PessoaTelefone { get; set; }
 
         // Criar uma CONSTANTE para conexão com o banco de dados
