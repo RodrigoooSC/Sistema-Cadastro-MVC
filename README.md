@@ -45,7 +45,7 @@ target="_blank">SQL Server 2019</a>.
 https://github.com/RodrigoooSC/Sistema-Cadastro-MVC.git
 ```
 - Crie o banco de dados, a tabela e os campos:
-```
+```sql
 CREATE DATABASE cadastro_mvc;
 
 USE cadastro_mvc;
@@ -59,10 +59,10 @@ PessoaTelefone varchar(11)
 );
 ```
 - Caso seja necessário entre na pasta Sistema-Cadastro-MVC/Models/PessoaModel.cs e altera a constante de conexão do banco de dados:
-```
+```c#
 readonly string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=cadastro_mvc;Integrated Security=True";
 ```
 - Abra um terminal na pasta raiz e execute o projeto:
-```
+```bash
 dotnet run
 ```
