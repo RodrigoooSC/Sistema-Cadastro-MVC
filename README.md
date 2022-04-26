@@ -42,7 +42,7 @@ target="_blank">SQL Server 2019</a>.
 ## # Executando o projeto 🚀
 - Clone o repositório:
 ```bash
-https://github.com/RodrigoooSC/Sistema-Cadastro-MVC.git
+git clone https://github.com/RodrigoooSC/Sistema-Cadastro-MVC.git
 ```
 - Crie o banco de dados, a tabela e os campos:
 ```sql
